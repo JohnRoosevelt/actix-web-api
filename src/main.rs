@@ -1,5 +1,5 @@
 use actix_web::{ web, App, HttpServer };
-use std::sync::Mutex;
+use std::sync::atomic::AtomicI32;
 
 mod state;
 mod routes;
@@ -10,7 +10,7 @@ use state::AppState;
 async fn main() -> std::io::Result<()> {
     let app_state = web::Data::new(AppState {
         app_name: "My Actix Web App".to_string(),
-        counter: Mutex::new(0),
+        counter: AtomicI32::new(0),
     });
 
     HttpServer::new(move || {

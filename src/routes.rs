@@ -7,8 +7,12 @@ use crate::state::AppState;
 pub async fn index(data: web::Data<AppState>) -> String {
     let app_name = &data.app_name;
 
-    let mut counter = data.counter.lock().unwrap();
-    *counter += 1;
+    // let mut counter = data.counter.lock().unwrap(); // std::sync::Mutex
+    // let mut counter = data.counter.lock().await; // tokio::sync::Mutex
+    // *counter += 1;
+
+    // Ordering::SeqCst: Sequentially consistent ordering
+    let counter = data.counter.fetch_add(1, std::sync::atomic::Ordering::SeqCst); // std::sync::atomic::AtomicI32
 
     format!("Hello {app_name}! Request number: {counter}")
 }
