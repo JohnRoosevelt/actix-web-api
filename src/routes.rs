@@ -14,6 +14,7 @@ pub async fn index(data: web::Data<AppState>) -> String {
     // Ordering::SeqCst: Sequentially consistent ordering
     let counter = data.counter.fetch_add(1, std::sync::atomic::Ordering::SeqCst); // std::sync::atomic::AtomicI32
 
+    println!("{data:?}");
     format!("Hello {app_name}! Request number: {counter}")
 }
 

@@ -1,5 +1,6 @@
 
 // This struct represents shared application state
+#[derive(Debug)]
 pub struct AppState {
     pub app_name: String,
     // pub counter: std::sync::Mutex<i32>,  // sync lock for safe concurrent access
