@@ -1,4 +1,4 @@
-use actix_web::{get, web, HttpResponse};
+use actix_web::{ get, web, HttpResponse };
 
 use crate::state::AppState;
 
@@ -21,17 +21,19 @@ pub async fn index(data: web::Data<AppState>) -> String {
 // config the /app
 pub fn app_config(cfg: &mut web::ServiceConfig) {
     cfg.service(
-        web::resource("/app")
+        web
+            ::resource("/app")
             .route(web::get().to(|| async { HttpResponse::Ok().body("app") }))
-            .route(web::head().to(HttpResponse::MethodNotAllowed)),
+            .route(web::head().to(HttpResponse::MethodNotAllowed))
     );
 }
 
 // config the /api/test
 pub fn api_config(cfg: &mut web::ServiceConfig) {
     cfg.service(
-        web::resource("/test")
+        web
+            ::resource("/test")
             .route(web::get().to(|| async { HttpResponse::Ok().body("test") }))
-            .route(web::head().to(HttpResponse::MethodNotAllowed)),
+            .route(web::head().to(HttpResponse::MethodNotAllowed))
     );
 }
