@@ -27,3 +27,8 @@ Start the development server on `http://localhost:8080`:
 ```bash
 watchexec -e rs -r cargo r
 ```
+
+## install dependencies crate
+```bash
+cargo add chrono --features serde,clock
+```
