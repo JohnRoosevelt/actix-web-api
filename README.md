@@ -32,3 +32,14 @@ watchexec -e rs -r cargo r
 ```bash
 cargo add chrono --features serde,clock
 ```
+
+# Features
+- [x] actix web
+- [x] middleware cors
+- [x] middleware logs
+- [ ] middleware jwt auth
+- [ ] db pg
+- [ ] db sqlite
+- [ ] websocket
+- [ ] http2
+- [ ] shuttle

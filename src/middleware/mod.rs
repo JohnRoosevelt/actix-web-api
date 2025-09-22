@@ -1,7 +1,9 @@
-pub mod auth;
-pub mod logger;
-pub mod cors;
+mod auth;
+mod cors;
+mod compression;
+mod envlogger;
 
 pub use auth::AuthMiddleware;
-pub use logger::LoggerMiddleware;
 pub use cors::configure as configure_cors;
+pub use compression::compression;
+pub use envlogger::{init_logger, get_default_logger};

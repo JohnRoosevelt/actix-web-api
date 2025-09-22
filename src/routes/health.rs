@@ -28,7 +28,7 @@ async fn liveness() -> Result<HttpResponse> {
     Ok(HttpResponse::Ok().body("Alive"))
 }
 
-async fn info(data: web::Data<AppState>) -> String {
+async fn detail(data: web::Data<AppState>) -> String {
     let app_name = &data.app_name;
     data.counter.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
     println!("{data :?}");
@@ -43,6 +43,6 @@ pub fn configure(cfg: &mut web::ServiceConfig) {
             .route("", web::get().to(health_check))
             .route("/ready", web::get().to(readiness))
             .route("/live", web::get().to(liveness))
-            .route("/info", web::get().to(info))
+            .route("/info", web::get().to(detail))
     );
 }
